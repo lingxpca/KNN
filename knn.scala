@@ -1,5 +1,3 @@
-package cmsc
-
 import org.apache.log4j.{Level, Logger}
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.ml.feature.VectorAssembler
@@ -62,7 +60,7 @@ object knn {
     }.persist()
     val sss = s.groupBy(_._1).map(x => (x._1,nearest(k,x._2.map(x=>(x._2,x._3))),nearest(k,x._2.map(x=>(x._2,x._3))).map(x =>x._2).groupBy(identity).maxBy(_._2.size)._1))
     
-    sss.saveAsTextFile("src/main/resources/results")
+    //sss.saveAsTextFile("src/main/resources/results")
     val elapsedTime = (System.nanoTime() - start)/1000000000.000000
     println("elapsed " + elapsedTime +" seconds")
     
